@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Home - Hotel</title>
+</head>
+<body>
+
+<nav class="navbar">
+   <div class="logo">
+    <img src="/static/logo.png" alt="Logo"><br>
+  <input type="checkbox" id="menu-toggle" hidden>
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <ul class="nav-links">
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    
+    <li><a href="{{ url_for('booking') }}">Booking</a></li>
+    
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    
+
+    {% if session.username %}
+    <li>
+      <a href="{{ url_for('logout') }}" class="logout-btn">
+        👋log out {{ session.username }}
+      </a>
+    </li>
+    {% else %}
+  <!-- <li><a href="{{ url_for('login') }}">Login</a></li>-->
+    {% endif %}
+
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>🏨 Karibu Hotel</h1>
+  <p>Experience luxury and comfort</p>
+
+  <div class="image-box">
+    <img src="/static/images.jpeg" alt="Hotel">
+    <img src="/static/images (1).jpeg" alt="Hotel">
+    <img src="/static/images (2).jpeg" alt="Hotel">
+    <img src="/static/images (3).jpeg" alt="Hotel">
+    <img src="/static/download1.jpeg" alt="Hotel">
+    <img src="/static/download2.jpeg" alt="Hotel">
+    <img src="/static/download3.jpeg" alt="Hotel">
+    <img src="/static/download4.jpeg" alt="Hotel">
+    <img src="/static/download.jpeg" alt="Hotel">
+
+
+  </div>
+  <a href="{{ url_for('booking') }}" class="btn">Book Now</a>
+</section>
+
+</body>
+</html>

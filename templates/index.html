@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Home - Hotel</title>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="/static/logo.png" alt="Logo"><br>
+    
+  </div>
+
+  <!-- HAMBURGER -->
+  <input type="checkbox" id="menu-toggle" hidden>
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <!-- NAV LINKS -->
+  <ul class="nav-links">
+  
+    <li><a href="{{ url_for('rooms') }}">Rooms</a></li>
+    <li><a href="{{ url_for('register') }}">Booking</a></li>
+   <!-- <li><a href="{{ url_for('confirm') }}">Confirm</a></li>-->
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    
+
+    {% if session.username %}
+    <li>
+      <a href="{{ url_for('logout') }}" class="logout-btn">
+        👋 {{ session.username }}
+      </a>
+    </li>
+    {% else %}
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    {% endif %}
+
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>🏨 Karibu Kimzoya Hotel</h1>
+  <p>Experience luxury and comfort</p>
+  <p>You are warmly welcome</p>
+</section>
+    <div class="videos">
+
+  <video width="300" controls muted + autoplay>
+    <source src="{{ url_for('static', filename='videos/video1.mp4') }}" type="video/mp4">
+  </video>
+
+  <video width="300" controls>
+    <source src="{{ url_for('static', filename='videos/video2.mp4') }}" type="video/mp4">
+  </video>
+
+  <video width="300" controls>
+    <source src="{{ url_for('static', filename='videos/video3.mp4') }}" type="video/mp4">
+  </video>
+
+  <video width="300" controls>
+    <source src="{{ url_for('static', filename='videos/video4.mp4') }}" type="video/mp4">
+  </video>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <h3>OUR ENVIRONMENTS LOOK GOOD AND VERY ATTRACTIVE</h3>
+
+  <!-- IMAGES -->
+  <div class="image-box">
+    <img src="/static/imag1.jpg" alt="Hotel">
+    <img src="/static/imag2.jpg" alt="Hotel">
+    <img src="/static/image3.jpg" alt="Hotel">
+    <img src="/static/image4.jpg" alt="Hotel">
+    <img src="/static/image5.jpg" alt="Hotel">
+    <img src="/static/image6.jpg" alt="Hotel">
+    <img src="/static/hotel1.jpg" alt="Hotel">
+    <img src="/static/imag.jpg" alt="Hotel">
+    <img src="/static/image2.jpg" alt="Hotel">
+  </div>
+
+  <!-- PARAGRAPHS -->
+  <div class="footer-content">
+
+    <div class="footer-col">
+      <h4>🏨 About Us</h4>
+      <p>We provide luxury accommodation 
+        <br>with world class services and
+        <br>
+         unforgettable experiences for all our guests.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>📍 Location</h4>
+      <p>123 Hotel Street</p>
+      <p>Mbeya, Tanzania</p>
+      <p>Near City Center</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>📞 Contact</h4>
+      <p>📱 +255 700 000 000</p>
+      <p>📧 hotel@gmail.com</p>
+      <p>🕐 Open 24/7</p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>© 2026 Kimzoya Hotel. All rights reserved. Designed by Imazoya</p>
+  </div>
+
+</footer>
+
+</body>
+</html>

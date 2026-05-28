@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Register - Hotel</title>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="/static/logo.png" alt="Logo">
+    <span>Kimzoya Hotel</span>
+  </div>
+
+  <input type="checkbox" id="menu-toggle" hidden>
+  <label for="menu-toggle" class="hamburger">☰</label>
+
+  <ul class="nav-links">
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+   <!-- <li><a href="{{ url_for('rooms') }}">Rooms</a></li>-->
+  <!-- <li><a href="{{ url_for('booking') }}">Booking</a></li>-->
+  
+  <!--  <li><a href="{{ url_for('register') }}">Register</a>-->
+   <!-- <li><a href="{{ url_for('admin') }}">Admin</a></li>-->
+
+    {% if session.username %}
+    <li>
+      <a href="{{ url_for('logout') }}" class="logout-btn">
+        👋 {{ session.username }}
+      </a>
+    </li>
+    {% else %}
+   <!--<li><a href="{{ url_for('login') }}">Login</a></li>-->
+    {% endif %}
+
+  </ul>
+</nav>
+
+<!-- FLASH MESSAGES -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-container">
+  {% for category, message in messages %}
+  <div class="flash {{ category }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- REGISTER BOX -->
+<div class="register-section">
+  <div class="register-box">
+    <h3>📝 Create Account</h3>
+
+    <form method="POST">
+
+      <label>Full Name</label>
+      <input type="text" name="name"
+             placeholder="Enter your name" required>
+
+      <label>Email</label>
+      <input type="email" name="email"
+             placeholder="Enter your email" required>
+
+      <label>Phone Number</label>
+      <input type="tel" name="number"
+             placeholder="e.g 0712345678"
+             minlength="10" maxlength="10"
+             pattern="[0-9]+" required>
+
+      <label>Username</label>
+      <input type="text" name="username"
+             placeholder="Enter username" required>
+
+      <label>Password</label>
+      <input type="password" name="password"
+             placeholder="Enter password" required>
+
+      <label>Confirm Password</label>
+      <input type="password" name="confirm_password"
+             placeholder="Confirm password" required>
+
+      <button type="submit">Register</button>
+
+    </form>
+
+    <a class="login-link" href="{{ url_for('login') }}">
+      Already have account? Login
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>

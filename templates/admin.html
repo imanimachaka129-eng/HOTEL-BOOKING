@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Admin - Kimzoya Hotel</title>
+</head>
+<body>
+
+<nav class="navbar">
+  <h2 class="logo">🏨 Kimzoya Hotel</h2>
+  <input type="checkbox" id="menu-toggle" hidden>
+  <label for="menu-toggle" class="hamburger">☰</label>
+  <ul class="nav-links">
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('rooms') }}">Rooms</a></li>
+    <li><a href="{{ url_for('booking') }}">Booking</a></li>
+   <!-- <li><a href="{{ url_for('confirm') }}">Confirm</a></li>-->
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    <li><a href="{{ url_for('admin') }}">Admin</a></li>
+    {% if session.username %}
+    <li><a href="{{ url_for('logout') }}" class="logout-btn">👋 {{ session.username }}</a></li>
+    {% else %}
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+<div class="admin-container">
+  <h2 class="admin-title">📋 All Bookings</h2>
+
+  {% if bookers %}
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Room</th>
+      <th>Days</th>
+      <th>Address</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+
+    {% for booker in bookers %}
+    <tr>
+      <td>{{ booker[0] }}</td>
+      <td>{{ booker[1] }}</td>
+      <td>{{ booker[2] }}</td>
+      <td>{{ booker[3] }}</td>
+      <td>{{ booker[4] }}</td>
+      <td>{{ booker[5] }}</td>
+      <td>{{ booker[6] }}</td>
+      <td>
+        <a href="/delete/{{ booker[0] }}"
+           class="delete-btn"
+           onclick="return confirm('Una uhakika kufuta booking hii?')">
+          🗑 Delete
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+  {% else %}
+  <p class="no-orders">📭 Hakuna bookings bado!</p>
+  {% endif %}
+
+  <a href="{{ url_for('home') }}" class="back-btn">⬅ Back Home</a>
+
+</div>
+
+</body>
+</html>

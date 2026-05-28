@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Booking - Kimzoya Hotel</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo">
+    <img src="/static/logo.png" alt="Logo"><br>
+    
+  </div>
+  <!--<h2 class="logo">🏨 Kimzoya Hotel</h2>-->
+  <input type="checkbox" id="menu-toggle" hidden>
+  <label for="menu-toggle" class="hamburger">☰</label>
+  <ul class="nav-links">
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+  <!-- <li><a href="{{ url_for('rooms') }}">Rooms</a></li>-->
+   <!--- <li><a href="{{ url_for('booking') }}">Booking</a></li>-->
+   <!-- <li><a href="{{ url_for('confirm') }}">Confirm</a></li>-->
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+  
+    {% if session.username %}
+    <li><a href="{{ url_for('logout') }}" class="logout-btn">👋log out now {{ session.username }}</a></li>
+    {% else %}
+   <li><a href="{{ url_for('login') }}">Login</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-container">
+  {% for category, message in messages %}
+  <div class="flash {{ category }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="booking-section">
+  <div class="booking-box">
+    <h3>🏨 Book Now</h3>
+
+    <form method="POST">
+
+      <label>Full Name</label>
+      <input type="text" name="name"
+             placeholder="Enter full name" required>
+
+      <label>Phone Number</label>
+      <input type="tel" name="number"
+             placeholder="e.g 0712345678"
+             minlength="10" maxlength="10"
+             pattern="[0-9]+" required>
+
+      <label>Room Number</label>
+      <input type="number" name="rooms"
+             placeholder="Enter room number"
+             min="1" max="100" required>
+
+      <label>Days to Spend</label>
+      <input type="number" name="day_to_spend"
+             placeholder="e.g 3"
+             min="1" max="30" required>
+
+      <label>Address</label>
+      <input type="text" name="address"
+             placeholder="Your address" required>
+  
+     <button type="submit">🏨 Book Now</button>
+     
+    </form>
+
+    <a class="login-link" href="{{ url_for('home') }}">⬅ Back Home</a>
+
+  </div>
+</div>
+
+</body>
+</html>
