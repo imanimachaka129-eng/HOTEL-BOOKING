@@ -1171,3 +1171,31 @@ table tr:nth-child(10) { animation: rowReveal 0.4s ease 1.0s forwards; opacity: 
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
+.password-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.password-box input{
+    flex:1;
+}
+
+.show-btn{
+    padding:10px 14px;
+    border:none;
+    background:#ddd;
+    cursor:pointer;
+    border-radius:6px;
+    font-size:16px;
+    text-align: start;
+}
+
+.show-btn:hover{
+    background:#bbb;
+}
+p1{ color: #2d20e8;
+  text-align: start;
+
+}
